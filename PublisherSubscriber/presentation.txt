@@ -1,0 +1,51 @@
+2.  singleton
+3.  factory
+4.  which responsible to filter publisher or subscriber
+
+
+5. Serialization Aspect:
+    1. Type Safety: subscriber need to know way to determinate if what he got from
+                    publisher is realy shape struct or not something else
+    2. 
+
+5.  serialization options:
+    - Separate Serializer Classes (ShapeSerializer, CircleSerilaizer, etc)
+        pros:
+            keeps the serialization logic out of the shape classes
+        cons:
+            more code: duplicate classes, for each shape need new class Serializer
+            private access: need give access by friend class
+    - Serialization Wrapper adds a layer of indirection but keeps shapes clean.
+    - inherits from Iserializable interface:
+        pros:
+            less of code
+            no need to give access to another classes
+            each shape can implement serialization differently
+        cons:
+            no very SRP
+
+        way to declare the type of inheritance:
+        - Interface Implementation: 
+            When a class inherits from an interface, it's typically doing so to 
+            implement that interface. The whole point of an interface is to 
+            define a public contract that the implementing class agrees 
+            to fulfill. This is precisely what public inheritance represents.
+        - Polymorphism: 
+            You want to be able to use Circle objects wherever ISerializable 
+            objects are expected. This is only possible with public inheritance.
+        - Is-A Relationship: 
+            Public inheritance represents an "is-a" relationship. 
+            A Circle "is a" Shape and "is a" Serializable object, which is what
+            you're trying to express.
+        - Access to Interface Methods: 
+            You want the serialization methods (like serialize() and 
+            deserialize()) to be publicly accessible on Circle objects. 
+            Public inheritance ensures this.
+
+
+
+
+
+
+
+
