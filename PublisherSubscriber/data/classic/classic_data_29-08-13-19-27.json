@@ -1,0 +1,29 @@
+[
+  {
+    "id": "bitcoin",
+    "name": "Bitcoin",
+    "symbol": "btc",
+    "current_price": 59761,
+    "market_cap": 1180103570497,
+    "total_volume": 34380148124,
+    "price_change_percentage_24h": -0.16597
+  },
+  {
+    "id": "ethereum",
+    "name": "Ethereum",
+    "symbol": "eth",
+    "current_price": 2543.71,
+    "market_cap": 306381786636,
+    "total_volume": 16092121159,
+    "price_change_percentage_24h": 0.97084
+  },
+  {
+    "id": "ripple",
+    "name": "XRP",
+    "symbol": "xrp",
+    "current_price": 0.572346,
+    "market_cap": 32178776485,
+    "total_volume": 1235316100,
+    "price_change_percentage_24h": -0.9604
+  }
+]

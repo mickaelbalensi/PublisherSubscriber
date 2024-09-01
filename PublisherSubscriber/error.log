@@ -1,0 +1,28 @@
+Python sys.path: ['/usr/lib/python310.zip', '/usr/lib/python3.10', '/usr/lib/python3.10/lib-dynload', '/home/mickael/.local/lib/python3.10/site-packages', '/usr/local/lib/python3.10/dist-packages', '/usr/lib/python3/dist-packages', '/home/mickael/github/PublisherSubscriber/publisher/src']
+Debug: Starting run_main()
+Debug: Entering main function
+Debug: About to fetch data for ['bitcoin', 'ethereum', 'ripple']
+Debug: Data fetched, processing...
+Debug: Creating data directory
+Debug: Saving data to JSON files
+Debug: Execution time: 0.50 seconds
+Debug: Data saved
+Debug: Finished run_main()
+Debug: Starting run_main()
+Debug: Entering main function
+Debug: About to fetch data for ['bitcoin', 'ethereum', 'ripple']
+Debug: Data fetched, processing...
+Error in main function: 'id'
+Debug: Finished run_main()
+Debug: Starting run_main()
+Debug: Entering main function
+Debug: About to fetch data for ['bitcoin', 'ethereum', 'ripple']
+Debug: Data fetched, processing...
+Error in main function: 'id'
+Debug: Finished run_main()
+Debug: Starting run_main()
+Debug: Entering main function
+Debug: About to fetch data for ['bitcoin', 'ethereum', 'ripple']
+Debug: Data fetched, processing...
+Error in main function: 'id'
+Debug: Finished run_main()

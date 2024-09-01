@@ -1,9 +1,9 @@
 #ifndef SUBSCRIBER_HPP
 #define SUBSCRIBER_HPP
 
-#include "../../utils/include/shapes.hpp"
-#include "../../utils/include/shapeFactory.hpp"
-#include "../../utils/include/server.hpp"
+#include "cryptoFactory.hpp"
+#include "crypto.hpp"
+#include "server.hpp"
 #include <thread>
 #include <chrono>
 #include <memory>
@@ -11,7 +11,7 @@
 class Subscriber
 {
 public:
-    explicit Subscriber(std::shared_ptr<SHAPE[]> shapes, size_t len);
+    explicit Subscriber(CLIENT_TYPE type);
     ~Subscriber();
 
 private:
@@ -19,8 +19,7 @@ private:
     void WaitEvent();
 
     UDPServer m_server;
-    std::shared_ptr<SHAPE[]> m_shapes;
-    size_t m_len;
+    CLIENT_TYPE m_type;
     bool isWaiting;
 };
 

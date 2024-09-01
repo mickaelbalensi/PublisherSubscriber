@@ -5,8 +5,8 @@
 #include <thread>
 #include <memory>
 #include <chrono>
-#include "client.hpp"
-#include "crypto.hpp"
+#include "../../utils/include/client.hpp"
+#include "../../utils/include/shapes.hpp"
 
 using namespace std;
 
@@ -18,13 +18,13 @@ public:
     explicit Publisher();
 
     void EndBroadcast();
-    void Publish(std::shared_ptr<ICrypto> shapePtr);
+    void Publish(SHAPE shape, std::shared_ptr<IShape> shapePtr);
 private:
     void StartBroadcast();
     void Subscribe();
     
     bool m_isBroadcasting;
-    std::vector<sockaddr_in> m_subscribers;
+    std::unordered_map<SHAPE, std::vector<sockaddr_in>> m_subscribers;
     UDPClientBroadcast m_udpClientBroadcast;
 };
 

@@ -3,22 +3,15 @@
 #include <chrono>
 
 int main(int argc, char *argv[]) {
-
-    std::shared_ptr<SHAPE[]> shapes(new SHAPE[argc - 1]);
-    for (int i = 1; i < argc; i++)
+    if (argc < 2)
     {
-        if (strncmp(argv[i], "1", 1) == 0)
-        {
-            shapes[i - 1] = SHAPE::CIRCLE;
-        }
-        else 
-        {
-            shapes[i - 1] = SHAPE::RECTANGLE;
-        }
-        
+        std::cout << "Usage: ./main [1] " << std::endl;
+        return 0;
     }
+    
+    CLIENT_TYPE type = strncmp(argv[1], "1", 1) == 0 ? CLIENT_TYPE::CLASSIC: CLIENT_TYPE::PREMIUM;
 
-    Subscriber subscriber(shapes, argc - 1);
+    Subscriber subscriber(type);
     std::this_thread::sleep_for(std::chrono::seconds(30));
     return 0;
 }

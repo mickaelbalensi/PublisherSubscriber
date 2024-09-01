@@ -30,7 +30,7 @@ UDPClientBroadcast::~UDPClientBroadcast()
 
 void UDPClientBroadcast::SendBroadcast(const std::chrono::seconds period, const char *message, size_t size)
 {
-    //while (true)
+    while (true)
     {
         std::this_thread::sleep_for(period);
 
