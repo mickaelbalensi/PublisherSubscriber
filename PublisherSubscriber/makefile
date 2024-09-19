@@ -4,10 +4,13 @@ CXXFLAGS = -std=c++23 -Wall
 DEBUGFLAGS = -g
 RELEASEFLAGS = -O2
 
+
 # Directories
 PUBLISHER_DIR = publisher
 SUBSCRIBER_DIR = subscriber
 UTILS_DIR = utils
+DATABASE_DIR = database
+
 BIN_DEBUG = debug
 BIN_RELEASE = release
 
@@ -17,13 +20,16 @@ SUB_OUT = $(SUBSCRIBER_DIR)/bin/$(BIN_RELEASE)/sub.out
 
 # Libraries
 UTILS_LIB = $(UTILS_DIR)/libutils.a
+DATABASE_LIB = $(DATABASE_DIR)/libdatabase.a
 
 # Header and Source Files
 UTILS_HEADERS = $(UTILS_DIR)/include
+DATABASE_HEADERS = $(DATABASE_DIR)/include
 PUBLISHER_HEADERS = $(PUBLISHER_DIR)/include
 SUBSCRIBER_HEADERS = $(SUBSCRIBER_DIR)/include
 
 UTILS_SOURCES = $(UTILS_DIR)/src/client.cpp $(UTILS_DIR)/src/server.cpp $(UTILS_DIR)/src/cryptoFactory.cpp $(UTILS_DIR)/src/crypto.cpp
+DATABASE_SOURCES = $(DATABASE_DIR)/src/sqlite.cpp
 PUBLISHER_SOURCES = $(PUBLISHER_DIR)/src/publisher.cpp $(PUBLISHER_DIR)/src/crypto_generator.cpp
 SUBSCRIBER_SOURCES = $(SUBSCRIBER_DIR)/src/subscriber.cpp
 
@@ -44,19 +50,24 @@ endif
 
 # Object files
 UTILS_OBJS = $(UTILS_SOURCES:.cpp=.o)
+DATABASE_OBJS = $(DATABASE_SOURCES:.cpp=.o)
 PUBLISHER_OBJS = $(PUBLISHER_SOURCES:.cpp=.o)
 SUBSCRIBER_OBJS = $(SUBSCRIBER_SOURCES:.cpp=.o)
 
 # Target rules
-all: $(UTILS_LIB) publisher subscriber
+all: $(UTILS_LIB) $(DATABASE_LIB) publisher subscriber
 
 # Build Utils Library
 $(UTILS_LIB): $(UTILS_OBJS)
 	@echo "Building library..."
 	ar rcs $(UTILS_LIB) $(UTILS_OBJS)
 
+$(DATABASE_LIB): $(DATABASE_OBJS)
+	@echo "Building db library..."
+	ar rcs $(DATABASE_LIB) $(DATABASE_OBJS) 
+
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -I$(PUBLISHER_HEADERS) -I$(SUBSCRIBER_HEADERS) -I$(UTILS_HEADERS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -I$(PUBLISHER_HEADERS) -I$(SUBSCRIBER_HEADERS) -I$(UTILS_HEADERS) -I$(DATABASE_HEADERS) -c $< -o $@
 
 # Build Publisher
 publisher: $(PUBLISHER_OBJS) $(PUBLISHER_TEST)
@@ -68,7 +79,7 @@ publisher: $(PUBLISHER_OBJS) $(PUBLISHER_TEST)
 subscriber: $(SUBSCRIBER_OBJS) $(SUBSCRIBER_TEST)
 	@echo "Building subscriber..."
 	@mkdir -p $(SUBSCRIBER_DIR)/bin/$(BIN_DIR)
-	$(CXX) $(CXXFLAGS) -I$(SUBSCRIBER_HEADERS) -I$(UTILS_HEADERS) $(SUBSCRIBER_OBJS) $(SUBSCRIBER_TEST) -o $(SUB_OUT) $(UTILS_LIB)
+	$(CXX) $(CXXFLAGS) -I$(SUBSCRIBER_HEADERS) -I$(UTILS_HEADERS) -I$(DATABASE_HEADERS) $(SUBSCRIBER_OBJS) $(SUBSCRIBER_TEST) -o $(SUB_OUT) $(UTILS_LIB) $(DATABASE_LIB) -lsqlite3
 
 # Run Publisher
 run-publisher:

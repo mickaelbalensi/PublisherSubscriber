@@ -47,16 +47,16 @@ void Publisher::EndBroadcast()
 
 void Publisher::Publish(std::shared_ptr<ICrypto> cryptoPtr)
 {
-    std::shared_ptr<uint8_t[]> buffer = cryptoPtr->Serialize();
+    /* std::shared_ptr<uint8_t[]> buffer = cryptoPtr->Serialize();
 
     m_udpClientBroadcast.SendBroadcast(PERIOD_BROADCAST, (char *)buffer.get(),\
                                                 cryptoPtr->GetSerializedSize());
-    
-    /* for (const auto& [_, subscribAdd] : m_subscribers)
+ */    
+    for (const auto& [_, subscribAdd] : m_subscribers)
     {
         //cryptoPtr->print();
         std::shared_ptr<uint8_t[]> buffer = cryptoPtr->Serialize();
         m_udpClientBroadcast.SendTo((char *)buffer.get(), subscribAdd, cryptoPtr->GetSerializedSize());
-    } */ 
+    } 
 }
 

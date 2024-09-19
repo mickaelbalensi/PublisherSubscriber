@@ -1,4 +1,5 @@
 #include "subscriber.hpp"
+#include "sqlite.hpp"
 const size_t BUFFLEN = 1024;
 
 Subscriber::Subscriber(CLIENT_TYPE type)
@@ -6,6 +7,25 @@ Subscriber::Subscriber(CLIENT_TYPE type)
 {
     m_server.WaitingRequest();
     Register();
+}
+
+void Subscriber::History(size_t fromDay)
+{
+    SQLite db("database/crypto.db");
+
+    db.SelectFreeHistory(m_id, fromDay);
+}
+
+void Subscriber::Pause()
+{
+    isWaiting = false;
+}
+
+void Subscriber::Resume()
+{
+    isWaiting = true;
+    std::thread t1([&] { WaitEvent(); });
+    t1.detach();
 }
 
 Subscriber::~Subscriber()
@@ -20,13 +40,13 @@ void Subscriber::Register()
     const_cast<uid_t&>(m_id) = *(uid_t*)m_server.WaitingRequest().get();
     std::cout << "ID: " << m_id << std::endl;
 
-    std::thread t1([&] { WaitEvent(); });
-    t1.detach();
+    Resume();
 }
 
 void Subscriber::WaitEvent()
 {
     CryptoFactory fact;
+
     while (isWaiting)
     {
         std::cout << "Waiting event of type " << (m_type == CLIENT_TYPE::CLASSIC ? 

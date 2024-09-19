@@ -79,8 +79,6 @@ class SQLite {
 public:
     explicit SQLite(const char* path);
     ~SQLite();
-    void CreateTableIfNotExists();
-    void CreateSubscriberTableIfNotExists();
     void Insert(const CryptoTable& crypto);
     void Insert(const CryptoValuesTable& values);
     void Insert(const SubscriberTable& subscriber);
@@ -89,7 +87,6 @@ public:
     PremiumHistoryTable SelectPremiumHistory(uint32_t sub_id, size_t fromDays);
 private:
     sqlite3* db;
-
 };
 
 

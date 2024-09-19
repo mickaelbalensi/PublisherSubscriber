@@ -14,6 +14,9 @@ class Subscriber
 public:
     explicit Subscriber(CLIENT_TYPE type);
     ~Subscriber();
+    void History(size_t fromDay);
+    void Pause();
+    void Resume();
 
 private:
     void Register();

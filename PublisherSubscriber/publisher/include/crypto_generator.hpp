@@ -11,7 +11,7 @@ class CryptoGenerator
 {
 public:
     explicit CryptoGenerator();
-    ~CryptoGenerator() = default;  
+    ~CryptoGenerator() = default;
     void run();
 
 private:
