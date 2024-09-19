@@ -11,7 +11,7 @@
 using namespace std;
 
 const std::chrono::seconds PERIOD_BROADCAST = 5s;
-
+using uid_t = uint32_t;
 class Publisher
 {
 public:
@@ -24,7 +24,9 @@ private:
     void Subscribe();
     
     bool m_isBroadcasting;
-    std::vector<sockaddr_in> m_subscribers;
+    //std::vector<sockaddr_in> m_subscribers;
+    std::unordered_map<uid_t,sockaddr_in> m_subscribers;
+    uid_t m_totalSubscribers;
     UDPClientBroadcast m_udpClientBroadcast;
 };
 

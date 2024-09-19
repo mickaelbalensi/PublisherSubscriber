@@ -1,7 +1,9 @@
 
-//g++ -I/usr/include/python3.10 publisher/src/crypto_generator.cpp -lpython3.10
-#include "crypto_generator.hpp"
+// g++ -I/usr/include/python3.10  -I publisher/include/  -I utils/include/ 
+// utils/src/crypto.cpp utils/src/client.cpp publisher/src/publisher.cpp 
+// publisher/src/crypto_generator.cpp -lpython3.10 -g -o pub.out
 
+#include "crypto_generator.hpp"
 #include <thread>       //  this_thread::sleep_for
 #include <filesystem>
 #include <fstream>  // ifstream 
@@ -54,56 +56,6 @@ void CryptoGenerator::run()
         file.close();
         m_pub.Publish(make_shared<PremiumCrypto>(jsonCrypto));
     }
-
-
-    /* json jsonFile;
-    std::string classicFolderPath = "/home/mickael/github/PublisherSubscriber/data/classic/";  
-
-    std::cout << fileClassicNames[0].c_str() << endl;
-    classicFolderPath.append(fileClassicNames[0]);
-    std::cout << classicFolderPath.c_str() << endl;
-
-    std::ifstream file(classicFolderPath.c_str());
-    file >> jsonFile;
-    std::cout << jsonFile.dump(4) << std::endl;
-    std::cout << jsonFile << std::endl;
-    std::cout << jsonFile[0] << std::endl;
-    std::cout << jsonFile[0]["id"] << std::endl;
-
-    ClassicCrypto classicCrypto(jsonFile); 
-    classicCrypto.print();
-
-    ClassicCrypto deserialized;
-    deserialized.Deserialize(classicCrypto.Serialize());
-
-    std::cout << "*******DESERIALIZED*******" << std::endl;
-    deserialized.print();
-
-    // START PREMIUM
-    std::cout << "******************START PREMIUM*****************" << std::endl;
-    json jsonFile2;
-    std::string premiumFolderPath = "/home/mickael/github/PublisherSubscriber/data/premium/";  
-
-    std::cout << filePremiumNames[0].c_str() << endl;
-    premiumFolderPath.append(filePremiumNames[0]);
-    std::cout << premiumFolderPath.c_str() << endl;
-
-    std::ifstream file2(premiumFolderPath.c_str());
-    file2 >> jsonFile2;
-    std::cout << jsonFile2.dump(4) << std::endl;
-    std::cout << jsonFile2 << std::endl;
-    std::cout << jsonFile2[0] << std::endl;
-    std::cout << jsonFile2[0]["id"] << std::endl;
-
-    PremiumCrypto premiumCrypto(jsonFile2); 
-    premiumCrypto.print();
-
-    PremiumCrypto premdeserialized;
-    premdeserialized.Deserialize(premiumCrypto.Serialize());
-
-    std::cout << "*******DESERIALIZED*******" << std::endl;
-    premdeserialized.print();
- */
 }
 
 int main()

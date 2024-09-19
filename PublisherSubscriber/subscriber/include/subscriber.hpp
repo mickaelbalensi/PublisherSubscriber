@@ -8,6 +8,7 @@
 #include <chrono>
 #include <memory>
 
+using uid_t = uint32_t;
 class Subscriber
 {
 public:
@@ -21,6 +22,7 @@ private:
     UDPServer m_server;
     CLIENT_TYPE m_type;
     bool isWaiting;
+    const uid_t m_id;
 };
 
 #endif // SUBSCRIBER_HPP

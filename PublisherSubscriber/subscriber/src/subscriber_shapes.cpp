@@ -25,7 +25,7 @@ void Subscriber::Register() {
         offset += sizeof(SHAPE);
     }
 
-    m_server.Acknoledge(response, offset);
+    m_server.Acknowledge(response, offset);
     std::thread t1([&] { WaitEvent(); });
     t1.detach();
 }

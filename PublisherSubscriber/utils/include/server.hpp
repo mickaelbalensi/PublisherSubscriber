@@ -14,7 +14,7 @@ class UDPServer {
 public:
     UDPServer();
     std::shared_ptr<uint8_t[]> WaitingRequest();
-    void Acknoledge(char *response, size_t size);
+    void Acknowledge(char *response, size_t size);
     ~UDPServer();
 
 private:

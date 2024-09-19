@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++14 -Wall
+CXXFLAGS = -std=c++23 -Wall
 DEBUGFLAGS = -g
 RELEASEFLAGS = -O2
 
@@ -23,8 +23,8 @@ UTILS_HEADERS = $(UTILS_DIR)/include
 PUBLISHER_HEADERS = $(PUBLISHER_DIR)/include
 SUBSCRIBER_HEADERS = $(SUBSCRIBER_DIR)/include
 
-UTILS_SOURCES = $(UTILS_DIR)/src/client.cpp $(UTILS_DIR)/src/server.cpp $(UTILS_DIR)/src/shapeFactory.cpp $(UTILS_DIR)/src/shapes.cpp
-PUBLISHER_SOURCES = $(PUBLISHER_DIR)/src/publisher.cpp $(PUBLISHER_DIR)/src/shapeCreator.cpp
+UTILS_SOURCES = $(UTILS_DIR)/src/client.cpp $(UTILS_DIR)/src/server.cpp $(UTILS_DIR)/src/cryptoFactory.cpp $(UTILS_DIR)/src/crypto.cpp
+PUBLISHER_SOURCES = $(PUBLISHER_DIR)/src/publisher.cpp $(PUBLISHER_DIR)/src/crypto_generator.cpp
 SUBSCRIBER_SOURCES = $(SUBSCRIBER_DIR)/src/subscriber.cpp
 
 # Test files containing main functions
@@ -56,7 +56,7 @@ $(UTILS_LIB): $(UTILS_OBJS)
 	ar rcs $(UTILS_LIB) $(UTILS_OBJS)
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -I$(UTILS_HEADERS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -I$(PUBLISHER_HEADERS) -I$(SUBSCRIBER_HEADERS) -I$(UTILS_HEADERS) -c $< -o $@
 
 # Build Publisher
 publisher: $(PUBLISHER_OBJS) $(PUBLISHER_TEST)
@@ -76,7 +76,7 @@ run-publisher:
 
 # Run Subscriber
 run-subscriber:
-	./$(SUB_OUT) arg1 arg2 arg3 # Replace with actual arguments
+	./$(SUB_OUT) $(ARGS) 
 
 # Clean
 clean:

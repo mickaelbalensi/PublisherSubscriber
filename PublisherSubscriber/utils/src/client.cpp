@@ -30,11 +30,10 @@ UDPClientBroadcast::~UDPClientBroadcast()
 
 void UDPClientBroadcast::SendBroadcast(const std::chrono::seconds period, const char *message, size_t size)
 {
-    while (true)
+    //while (true)
     {
-        std::this_thread::sleep_for(period);
+        //std::this_thread::sleep_for(period);
 
-        // Send the broadcast message
         if (sendto(sockfd, message, size, 0, 
             (sockaddr *)&broadcast_addr, sizeof(broadcast_addr)) == -1) 
         {

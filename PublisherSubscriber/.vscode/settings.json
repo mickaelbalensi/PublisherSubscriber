@@ -62,5 +62,19 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp"
-    }
+    },
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "cryptodb",
+            "database": "${workspaceFolder:PublisherSubscriber}/database/crypto.db"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "crypto",
+            "database": "${workspaceFolder:PublisherSubscriber}/database/crypto.db"
+        }
+    ]
 }

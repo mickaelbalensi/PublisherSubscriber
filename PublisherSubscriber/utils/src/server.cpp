@@ -52,7 +52,7 @@ std::shared_ptr<uint8_t[]> UDPServer::WaitingRequest() {
     return buffer;
 }
 
-void UDPServer::Acknoledge(char *response, size_t size) {
+void UDPServer::Acknowledge(char *response, size_t size) {
     close(sockfd);
 
     if ((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1) 

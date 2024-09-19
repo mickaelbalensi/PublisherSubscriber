@@ -89,7 +89,7 @@ void ICrypto::Deserialize(const std::shared_ptr<uint8_t[]>& buffer)
         throw std::runtime_error("Unsupported version number");
     }
 
-    m_header.client_type = static_cast<CLIENT_TYPE>(ntohl(static_cast<uint32_t>(header->client_type)));
+    //m_header.client_type = static_cast<CLIENT_TYPE>(ntohl(static_cast<uint32_t>(header->client_type)));
 } 
 
 uint64_t ICrypto::GetSerializedSize() const {

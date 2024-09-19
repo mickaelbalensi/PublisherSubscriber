@@ -8,7 +8,7 @@
             "name": "Debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/pub.out", // Replace with your program's executable path
+            "program": "${workspaceFolder}/database/a.out", // Replace with your program's executable path
             "args": [], // Add command-line arguments if needed
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
