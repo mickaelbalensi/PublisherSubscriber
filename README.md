@@ -1,4 +1,4 @@
-# PublisherSubscriber
+# Cryptocurrency Data Distribution
 
 A multi-process/multi-threading project implementing a publisher-subscriber design pattern for cryptocurrency data distribution.
 
@@ -57,39 +57,7 @@ This project implements a publisher-subscriber system for distributing cryptocur
 }
 ```
 
-## Project Structure
 
-```
-.
-├── data/
-│   ├── classic/
-│   └── premium/
-├── database/
-│   ├── create tables.sql
-│   ├── crypto.db
-│   ├── delete.sql
-│   ├── include/
-│   ├── insert data.sql
-│   ├── libdatabase.a
-│   ├── select.sql
-│   ├── src/
-│   ├── test/
-│   ├── update.sql
-│   └── view.sql
-├── makefile
-├── publisher/
-│   ├── include/
-│   ├── src/
-│   └── test/
-├── subscriber/
-│   ├── include/
-│   ├── src/
-│   └── test/
-└── utils/
-    ├── include/
-    ├── src/
-    └── test/
-```
 
 ## Building the Project
 
@@ -101,21 +69,17 @@ make
 
 ## Usage
 
-[Add instructions on how to run the publisher and subscriber processes]
+To run the publisher process:
+```
+make run-publisher
+```
+
+To run a subscriber process:
+```
+make run-subscriber ARGS="1"  # For classic subscription
+make run-subscriber ARGS="2"  # For premium subscription
+```
 
 ## Dependencies
 
 - SQLite
-- [Any other external libraries or APIs used]
-
-## Contributing
-
-[Add guidelines for contributing to the project]
-
-## License
-
-[Specify the license for your project]
-
-## Contact
-
-[Your contact information or how to reach out for questions/issues]
